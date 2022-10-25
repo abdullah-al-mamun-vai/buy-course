@@ -12,7 +12,14 @@ const Course = () => {
                 }
 
             </div>
+            <div>
+                <ul className="menu bg-base-100 w-full rounded-box">
+                    {
+                        courses.map(single => <li key={single._id}><Link to={`course/${single._id}`} className='underline'>{single.name}</Link></li>)
+                    }
 
+                </ul>
+            </div>
         </div>
     );
 };
