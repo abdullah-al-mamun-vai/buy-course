@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../Authcontext';
 
 const Register = () => {
-    const { handleRegister } = useContext(UserContext)
+
+    const { handleRegister, handleGoogle } = useContext(UserContext)
     const handleRegis = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -48,7 +49,7 @@ const Register = () => {
                         <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
                     </div>
                     <div className="flex justify-center space-x-4">
-                        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+                        <button onClick={handleGoogle} aria-label="Log in with Google" className="p-3 rounded-sm">
                             <FaGoogle className="w-5 h-5 fill-current"></FaGoogle>
                         </button>
                         <button aria-label="Log in with GitHub" className="p-3 rounded-sm">

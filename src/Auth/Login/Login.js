@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import { UserContext } from '../Authcontext';
+
 const Login = () => {
+    const { handleLogin, handleGoogle } = useContext(UserContext)
+    const handleLog = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const gmail = form.gmail.value;
+        const pass = form.pass.value;
+        handleLogin(gmail, pass)
+            .then((user) => { console.log(user) })
+            .catch(error => console.log(error))
+        form.reset();
+    }
+
     return (
         <>
             <div className='w-5/12 mx-auto rounded'>
                 <div className='border rounded p-8 mt-6'>
-                    <form >
+                    <form onSubmit={handleLog}>
                         <div className="form-control my-3 w-full ">
                             <h4 className='text-2xl font-bold text-black uppercase'>Log in account</h4>
                         </div>
@@ -29,7 +43,7 @@ const Login = () => {
                         <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
                     </div>
                     <div className="flex justify-center space-x-4">
-                        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+                        <button onClick={handleGoogle} aria-label="Log in with Google" className="p-3 rounded-sm">
                             <FaGoogle className="w-5 h-5 fill-current"></FaGoogle>
                         </button>
                         <button aria-label="Log in with GitHub" className="p-3 rounded-sm">

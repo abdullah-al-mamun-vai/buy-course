@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../../Auth/Authcontext';
 
 const Header = () => {
+    const { handleLogOut } = useContext(UserContext);
     return (
         <div className="navbar bg-gradient-to-r from-sky-500 to-indigo-500">
             <div className="flex-1">
@@ -31,7 +33,7 @@ const Header = () => {
                         <li><Link to={'/'}>Blog</Link></li>
                         <li className='bg-base-100 text-black rounded-sm'><Link to={'/login'}>Login</Link></li>
                         <li><Link to={'/sign'}>Sign up</Link></li>
-                        <li><Link to={'/'}>Log out</Link></li>
+                        <li onClick={handleLogOut}><Link to={'/'}>Log out</Link></li>
 
                     </ul>
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
