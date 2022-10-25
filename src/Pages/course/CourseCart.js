@@ -17,7 +17,9 @@ const CourseCart = ({ course }) => {
                     <hr />
                     <div className="flex justify-between items-center">
                         <div>
-                            <div><p className='flex items-center'><FaClock className="mr-1 text-orange-600"></FaClock>{course.duration}</p></div>
+                            <div>
+                                <p className='flex items-center'><FaClock className="mr-1 text-orange-600"></FaClock>{course.duration}</p>
+                                </div>
                             <div className='flex items-center'>
                                 <p className='flex items-center font-semibold mr-1'><FaStar className="mr-1 text-orange-600"></FaStar>{course.rating}</p>
                                 <p className='flex items-center font-semibold '><FaUser className="mr-1 text-orange-600"></FaUser>{course.instructor.total_seat}</p>
