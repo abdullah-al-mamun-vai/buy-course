@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../Authcontext';
 
 const Register = () => {
+    const { handleRegister } = useContext(UserContext)
+    const handleRegis = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const gmail = form.gmail.value;
+        const pass = form.pass.value;
+        const name = form.name.value;
+        const confirm = form.confirm_pass.value;
+        handleRegister(gmail, pass)
+            .then((user) => { console.log(user) })
+            .catch(error => console.log(error))
+        form.reset();
+    }
     return (
         <>
             <div className='w-5/12 mx-auto rounded'>
                 <div className='border rounded p-8 mt-6'>
-                    <form >
+                    <form onSubmit={handleRegis}>
                         <div className="form-control my-3 w-full ">
                             <h4 className='text-2xl font-bold text-black uppercase'>Create an account</h4>
                         </div>
