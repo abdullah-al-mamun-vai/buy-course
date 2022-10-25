@@ -29,7 +29,7 @@ const Header = () => {
                 <div className="md:dropdown">
                     <ul tabIndex={0} className="menu lg:menu-horizontal sm:menu-compact p-0 text-white uppercase font-semibold sm:dropdown-content">
                         <li><Link to={'/home'}>home</Link></li>
-                        <li><Link to={'/'}>courses</Link></li>
+                        <li><Link to={'/course'}>courses</Link></li>
                         <li><Link to={'/'}>Blog</Link></li>
                         <li className='bg-base-100 text-black rounded-sm'><Link to={'/login'}>Login</Link></li>
                         <li><Link to={'/sign'}>Sign up</Link></li>
