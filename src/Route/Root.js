@@ -3,6 +3,7 @@ import Login from '../Auth/Login/Login';
 import Register from '../Auth/Register/Register';
 import Layer from '../Layout/Layer'
 import Course from '../Pages/course/Course';
+import CourseDetails from '../Pages/course/CourseDetails';
 import ErrorPage from '../Pages/Errorpage/ErrorPage'
 import Home from '../Pages/Home/Home';
 const router = createBrowserRouter([
@@ -11,9 +12,14 @@ const router = createBrowserRouter([
             { path: '/', element: <Home></Home> },
             { path: '/home', element: <Home></Home> },
             {
-                path: '/course', loader: () => {
+                path: '/courses', loader: () => {
                     return fetch('http://localhost:5000/allcourse')
                 }, element: <Course></Course>
+            },
+            {
+                path: '/course/:id', loader: ({ params }) => {
+                    return fetch(`http://localhost:5000/course/${params.id}`)
+                }, element: <CourseDetails></CourseDetails>,
             },
             { path: '/login', element: <Login></Login> },
             { path: '/sign', element: <Register></Register> }

@@ -9,9 +9,11 @@ const CourseCart = ({ course }) => {
                     <img src={course.thumbnail} alt="Shoes" className="rounded-xl h-32 w-11/12 mx-auto" />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">{course.name}</h2>
-                    <p>{course.about.length > 50 ? course.about.slice(0, 50) + '...' : '...'}</p>
-                    <p>by {course.instructor.name}</p>
+                    <div className='h-36'>
+                        <h2 className="card-title capitalize">{course.name}</h2>
+                        <p>{course.about.length > 50 ? course.about.slice(0, 50) + '...' : '...'}</p>
+                        <p>by <Link className='text-blue-500 font-semibold capitalize'>{course.instructor.name}</Link></p>
+                    </div>
                     <hr />
                     <div className="flex justify-between items-center">
                         <div>
