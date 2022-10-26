@@ -7,6 +7,7 @@ import Course from '../Pages/course/Course';
 import CourseDetails from '../Pages/course/CourseDetails';
 import ErrorPage from '../Pages/Errorpage/ErrorPage'
 import Home from '../Pages/Home/Home';
+import LockRoute from './LockRoute';
 const router = createBrowserRouter([
     {
         path: '/', element: <Layer></Layer>, errorElement: <ErrorPage></ErrorPage>, children: [
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/course/:id', loader: ({ params }) => {
                     return fetch(`http://localhost:5000/course/${params.id}`)
-                }, element: <CourseDetails></CourseDetails>,
+                }, element: <LockRoute><CourseDetails></CourseDetails></LockRoute>,
             },
             {
                 path: '/checkout/:id', loader: ({ params }) => {

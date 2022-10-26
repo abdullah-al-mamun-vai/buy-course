@@ -1,41 +1,47 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import app from '../firebase/firebase.init';
-import { GoogleAuthProvider } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
 
-const provider = new GoogleAuthProvider()
 
 
 const auth = getAuth(app)
+
 const Authcontext = ({ children }) => {
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null)
 
     const handleRegister = (gmail, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, gmail, password);
     }
     const handleLogin = (gmail, password) => {
-        return signInWithEmailAndPassword(auth, gmail, password)
+        return signInWithEmailAndPassword(auth, gmail, password);
     }
     const handleLogout = () => {
+        setLoading(true)
         signOut(auth).then(() => {
+        }).catch(error => { })
 
-        }).catch(error => console.log(error))
+    }
+    const handleFacebook = (provider) => {
+        return signInWithPopup(auth, provider)
     }
     useEffect(() => {
-        onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser)
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false)
         })
+        return () => {
+            unsubscribe();
+        }
     }, []);
-    const handleGoogle = () => {
-        signInWithPopup(auth, provider).then((result) => {
-            const user = result.user;
-            console.log(user)
-        })
-            .catch(error => { const er = error })
+    const handleGoogle = (provider) => {
+        return signInWithPopup(auth, provider)
     }
-    const info = { handleRegister, handleLogin, handleLogout, handleGoogle }
+    const info = { handleRegister, handleLogin, handleLogout, handleGoogle, user, loading, handleFacebook }
     return (
         <UserContext.Provider value={info}>
             {children}

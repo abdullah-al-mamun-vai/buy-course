@@ -5,8 +5,8 @@ import CourseCart from './CourseCart';
 const Course = () => {
     const courses = useLoaderData();
     return (
-        <div className='grid grid-cols-4 container mx-auto my-9'>
-            <div className='col-span-3 grid grid-cols-3 gap-2'>
+        <div className='grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-1 container mx-auto my-9'>
+            <div className='  2xl:col-span-3 lg:cols-span-2 grid 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-2'>
                 {
                     courses.map(cat => <CourseCart course={cat} key={cat._id}></CourseCart>)
                 }
