@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div className='h-screen'>
+        <div className='2xl:py-24 lg:py-24 sm:py-16'>
             <section className="dark:bg-gray-800 dark:text-gray-100">
                 <div className="container flex justify-center p-6 mx-auto sm:py-12 lg:py-24  2xl:flex-row lg:flex-col md:flex-col">
                     <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
@@ -18,8 +18,8 @@ const Home = () => {
                         <p className="mt-6 mb-8 text-lg sm:mb-12">A new online resource store offering high quality, on-screen and paperless educational resources to support business & IT courses in secondary schools and colleges.We have a great training facility in Perthshire ready to train you or your team in our facilitator led courses. The facility is also available for meeting room hire at very competitive rates.
                         </p>
                         <div className="flex md:flex-col xl:flex-row mx-auto sm:items-center sm:justify-center sm:space-y-0  lg:justify-start">
-                            <Link to={'/courses'} className="px-3 xl:mr-1 md:w-full sm:w-full mx-auto md:mb-3 py-3 text-lg font-semibold border rounded dark:bg-violet-400 dark:text-gray-900 dark:border-gray-100">Get Started</Link>
-                            <Link to={'/'} className="px-3 py-3 md:w-full sm:w-full  mx-auto text-lg font-semibold border rounded dark:border-gray-100">Some Questions</Link>
+                            <Link to={'/courses'} className="ring ring-blue-500 hover:bg-blue-600 hover:text-white transition ring-offset-0 2xl:mr-2 px-3 lg:mr-2 md:w-full sm:w-full mx-auto md:mb-3 py-3 text-lg font-semibold border rounded dark:bg-violet-400 dark:text-gray-900 dark:border-gray-100">Get Started</Link>
+                            <Link to={'/'} className="ring ring-blue-500 hover:bg-blue-600 hover:text-white transition px-3 py-3 md:w-full sm:w-full  mx-auto text-lg font-semibold border rounded dark:border-gray-100">Some Questions</Link>
                         </div>
                     </div>
                 </div>

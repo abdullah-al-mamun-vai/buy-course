@@ -9,7 +9,7 @@ const LockRoute = ({ children }) => {
         return <Navigate to={'/login'} state={{ from: location }} replace></Navigate>
     }
     if (loading) {
-        return <button className="btn loading">loading</button>
+        return <div className='text-center py-4 h-screen'><button className="btn bg-blue-400 loading ">loading</button></div>
     }
     return children;
 };

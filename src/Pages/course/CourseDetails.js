@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { FaStar, FaUser } from 'react-icons/fa';
+import { FaClock, FaDownload, FaStar, FaTimes, FaUser } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 
@@ -11,25 +11,25 @@ const CourseDetails = () => {
         <div>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content ">
-                    <div className="w-7/12" >
+                    <div className="w-7/12 sm:11/12" >
                         <div ref={ref}>
                             <img className='w-full h-5/6' src={picture} alt="" />
-                            <h1 className="text-5xl font-bold capitalize">{name}</h1>
+                            <h1 className="text-5xl sm:text-3xl font-bold capitalize">{name}</h1>
                             <p className="py-6">{about}</p>
                         </div>
-                        <div className='flex justify-between items-center'>
+                        <div className='flex justify-between items-center sm:flex-col'>
                             <div >
                                 <p>Instructor: {instructor.name}</p>
                                 <div>
                                     <p className='flex items-center font-semibold mr-1'>Rating : <FaStar className="mr-1 text-orange-600"></FaStar>{rating}</p>
                                     <p className='flex items-center font-semibold '>Total-Seat: <FaUser className="mr-1 text-orange-600"></FaUser>{instructor.total_seat}</p>
-                                    <p>duration  : {duration}</p>
+                                    <p className='flex items-center font-semibold '>duration  :<FaClock></FaClock> {duration}</p>
                                 </div>
 
                             </div>
                             <div className='flex flex-col'>
                                 <button className="btn btn-primary"><Link to={`/checkout/${details._id}`}>Enroll Now</Link></button>
-                                <ReactToPrint trigger={() => <button className='btn'>download</button>} content={() => ref.current} />
+                                <ReactToPrint trigger={() => <button className='btn btn-primary mt-4'><FaDownload className='mr-1' />Download Summary</button>} content={() => ref.current} />
                             </div>
                         </div>
                     </div>

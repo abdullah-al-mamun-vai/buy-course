@@ -30,10 +30,13 @@ const Register = () => {
         const pass = form.pass.value;
         const name = form.name.value;
         const photo = form.photo.value;
-        console.log(photo)
         const confirm = form.confirm_pass.value;
+
         if (pass !== confirm) {
             toast.error('try again,please check password,');
+        }
+        if (pass.length < 6 || confirm.length < 6) {
+            toast.error('password length must be 6 up');
         }
         if (user?.email === gmail) {
             toast.error('you have already an account');
@@ -44,10 +47,10 @@ const Register = () => {
                     updateProfile(res.user, {
                         displayName: name, photoURL: photo
                     })
+                    toast.success('successfully registered');
                     navigate('/home')
                 })
-                .catch(error => console.log(error))
-            toast.success('successfully registered');
+                .catch(error => { const err = error.message })
             form.reset();
         }
     }
@@ -60,19 +63,19 @@ const Register = () => {
                             <h4 className='text-2xl font-bold text-black uppercase'>Create an account</h4>
                         </div>
                         <div className="form-control my-3 w-full ">
-                            <input type="text" placeholder="First Name" name='name' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input type="text" placeholder="First Name" name='name' required className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
                         </div>
                         <div className="form-control my-3 w-full ">
-                            <input type="text" placeholder="User Photo" name='photo' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input type="text" placeholder="User Photo" name='photo' required className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
                         </div>
                         <div className="form-control my-3 w-full ">
-                            <input type="text" placeholder="User Name or Email" name='gmail' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input type="text" placeholder="User Name or Email" name='gmail' required className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
                         </div>
                         <div className="form-control my-3 w-full ">
-                            <input type="password" placeholder="Password" name='pass' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input type="password" placeholder="Password" name='pass' required className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
                         </div>
                         <div className="form-control my-3 w-full ">
-                            <input type="password" placeholder="Confirm Pass" name='confirm_pass' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input type="password" placeholder="Confirm Pass" name='confirm_pass' required className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
                         </div>
                         <div className="form-control my-3 w-full ">
                             <button className='w-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold py-2 rounded text-base uppercase'>Submit</button>

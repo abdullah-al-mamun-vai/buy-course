@@ -22,10 +22,15 @@ const Login = () => {
         handleLogin(gmail, pass)
             .then((user) => {
                 navigate(from, { replace: true });
+                toast.success('Login Successed')
+
+
+            })
+            .catch(error => {
+                setCurrenError(error)
                 form.reset();
 
             })
-            .catch(error => setCurrenError(error))
     }
     const handleGoog = () => {
         handleGoogle(provider).then((result) => {
@@ -49,10 +54,10 @@ const Login = () => {
                         </div>
 
                         <div className="form-control my-3 w-full ">
-                            <input type="text" placeholder="User Name or Email" name='gmail' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input type="text" placeholder="User Name or Email" name='gmail' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full" required />
                         </div>
                         <div className="form-control my-3 w-full ">
-                            <input type="text" placeholder="Password" name='pass' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
+                            <input required type="password" placeholder="Password" name='pass' className="input text-black input-bordered focus:outline-none border-t-0 border-l-0 border-r-0 rounded-none w-full " />
                         </div>
 
                         <div className="form-control my-3 w-full ">
@@ -60,7 +65,7 @@ const Login = () => {
                         </div>
 
                     </form>
-                    <p>{currentError ? 'user email or password incorrect' : ''}</p>
+                    <p className='text-red-700'>{currentError ? 'user email or password incorrect' : ''}</p>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
                         <p className="px-3 text-sm text-gray-400">Login with social accounts</p>

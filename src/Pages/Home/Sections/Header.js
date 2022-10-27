@@ -4,13 +4,19 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../../Auth/Authcontext';
 const Header = () => {
     const { user, handleLogout } = useContext(UserContext);
+    const [darkbtn, setDarkbtn] = useState(true);
+    const handleDark = () => {
+        darkbtn ? setDarkbtn(false) : setDarkbtn(true);
+
+    }
+
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const logo = require('./../../../assest/Skills-400px.png');
 
     return (
-        <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500">
-            <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <div className="bg-gradient-to-r from-blue-500 to-fuchsia-500">
+            <div className=" py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
                 <div className="relative flex items-center justify-between">
                     <Link
                         to={'/home'}
@@ -29,7 +35,7 @@ const Header = () => {
                                 <Link to={'/home'}
                                     aria-label="Home"
                                     title="Home"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     Home
                                 </Link>
@@ -38,18 +44,27 @@ const Header = () => {
                                 <Link to={'/courses'}
                                     aria-label="Courses"
                                     title="Courses"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     courses
                                 </Link>
                             </li>
                             <li>
-                                <Link to={'/'}
+                                <Link to={'/blog'}
                                     aria-label="Blog"
                                     title="Blog"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     blog
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={'/faq'}
+                                    aria-label="faq"
+                                    title="faq"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                >
+                                    faq
                                 </Link>
                             </li>
                             {!user?.email ?
@@ -58,7 +73,7 @@ const Header = () => {
                                         <Link to={'/login'}
                                             aria-label="Login"
                                             title="Login"
-                                            className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                            className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                                         >
                                             login
                                         </Link>
@@ -67,7 +82,7 @@ const Header = () => {
                                         <Link
                                             href="/sign"
                                             to={'/sign'}
-                                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                            className="inline-flex items-center justify-center h-12 px-6 font-medium capitalize tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                                             aria-label="Sign up"
                                             title="Sign up"
                                         >
@@ -79,7 +94,7 @@ const Header = () => {
                                 <>
                                     <li>
                                         <button onClick={handleLogout}
-                                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                            className="inline-flex items-center justify-center h-12 px-6 font-medium capitalize tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                                         >
                                             Log Out
                                         </button>
@@ -87,19 +102,31 @@ const Header = () => {
 
                                 </>
                             }
-                        </ul>
-                        <div className='md:hidden'>
-                            {
-                                user?.photoURL ? <button className="tooltip tooltip-warning" data-tip={user?.displayName}>
-                                    <img className=' w-12 h-12 rounded-full' src={user?.photoURL} alt="" />
-                                </button> : <div className="tooltip tooltip-warning" data-tip={user?.displayName}>
-                                    <button className="btn btn-warning"><FaUser /></button>
+                            <li>
+                                <div className="from-control w-20 font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 ">
+                                    <label className="label cursor-pointer">
+                                        <span className="">{darkbtn ? "light" : "dark"}</span>
+                                        <input type="checkbox" onClick={handleDark} className="toggle " />
+                                    </label>
                                 </div>
+                            </li>
+                        </ul>
 
-                            }
-                        </div>
+                        {
+                            user ?
+                                <div className='md:hidden'>
+                                    {
+                                        user?.photoURL ? <button className="tooltip tooltip-warning tooltip-left" data-tip={user?.displayName}>
+                                            <img className='w-12 h-12 rounded-full' src={user?.photoURL} alt="" />
+                                        </button> : <div className="tooltip tooltip-warning tooltip-left">
+                                            <button className="btn btn-warning"><FaUser /></button>
+                                        </div>
+
+                                    }
+                                </div> : ''
+                        }
                     </div>
-                    <div className="2xl:hidden lg:hidden md:block sm:block">
+                    <div className="2xl:hidden lg:hidden md:block sm:block z-10">
                         <div className='flex'>
                             <button
                                 aria-label="Open Menu"
@@ -132,9 +159,9 @@ const Header = () => {
                                                 title="Company"
                                                 className="inline-flex items-center"
                                             >
-
+                                                <img className='w-8' src={logo} alt="" />
                                                 <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                                    Company
+                                                    Build Skill
                                                 </span>
                                             </Link>
                                         </div>
@@ -157,7 +184,7 @@ const Header = () => {
                                                     title="home"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
-                                                    home
+                                                    Home
                                                 </Link>
                                             </li>
                                             <li>
@@ -166,41 +193,69 @@ const Header = () => {
                                                     title="courses"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
-                                                    courses
+                                                    Courses
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link to={'/'}
+                                                <Link to={'/blog'}
                                                     aria-label="blog"
                                                     title="blog"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
-                                                    blog
+                                                    Blog
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link to={'/login'}
-                                                    aria-label="login"
-                                                    title="Login"
+                                                <Link to={'/faq'}
+                                                    aria-label="faq"
+                                                    title="faq"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
-                                                    Login
+                                                    FAQ
                                                 </Link>
                                             </li>
+                                            {!user?.email ?
+                                                <>
+                                                    <li>
+                                                        <Link to={'/login'}
+                                                            aria-label="Login"
+                                                            title="Login"
+                                                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                        >
+                                                            login
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link
+                                                            href="/sign"
+                                                            to={'/sign'}
+                                                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                            aria-label="Sign up"
+                                                            title="Sign up"
+                                                        >
+                                                            Sign up
+                                                        </Link>
+                                                    </li>
+                                                </>
+                                                :
+                                                <>
+                                                    <li>
+                                                        <button onClick={handleLogout}
+                                                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                        >
+                                                            Log Out
+                                                        </button>
+                                                    </li>
 
+                                                </>
+                                            }
                                             <li>
-                                                <Link
-                                                    to={'/sign'}
-                                                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                                                    aria-label="Sign up"
-                                                    title="Sign up"
-                                                >
-                                                    sign up
-                                                </Link>
-                                            </li>
-                                            <li>
-
-
+                                                <div className="from-control font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 ">
+                                                    <label className="label cursor-pointer">
+                                                        <span className="text-black">{darkbtn ? "light" : "dark"}</span>
+                                                        <input type="checkbox" onClick={handleDark} className="toggle " />
+                                                    </label>
+                                                </div>
                                             </li>
                                         </ul>
                                     </nav>
