@@ -1,7 +1,7 @@
 import { updateProfile } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaFacebook, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Authcontext';
 import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
@@ -9,12 +9,12 @@ const provider = new GoogleAuthProvider();
 const faceProvider = new FacebookAuthProvider();
 
 const Register = () => {
+    const [erro, setErr] = useState('');
     const navigate = useNavigate();
-    const { user, handleRegister, handleGoogle, handleFacebook } = useContext
-        (UserContext);
+    const { user, handleRegister, handleGoogle, handleFacebook } = useContext(UserContext);
     const handleGoog = () => {
         handleGoogle(provider).then((result) => {
-            const user = result.user;
+            const curuser = result.user;
             navigate('/home')
             toast.success('Login Successed')
         })
@@ -35,12 +35,13 @@ const Register = () => {
         if (pass !== confirm) {
             toast.error('try again,please check password,');
         }
-        if (pass.length < 6 || confirm.length < 6) {
+        else if (pass.length < 6 || confirm.length < 6) {
             toast.error('password length must be 6 up');
         }
-        if (user?.email === gmail) {
+        else if (user?.email === gmail) {
             toast.error('you have already an account');
         }
+
         else {
             handleRegister(gmail, pass)
                 .then((res) => {
@@ -50,7 +51,10 @@ const Register = () => {
                     toast.success('successfully registered');
                     navigate('/home')
                 })
-                .catch(error => { const err = error.message })
+                .catch(error => {
+                    const err = error.message;
+                    setErr(err)
+                })
             form.reset();
         }
     }
@@ -80,7 +84,9 @@ const Register = () => {
                         <div className="form-control my-3 w-full ">
                             <button className='w-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold py-2 rounded text-base uppercase'>Submit</button>
                         </div>
+
                     </form>
+                    <p className='text-red-700 capitalize'>{erro ? 'something went wrong' : ''}</p>
 
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>

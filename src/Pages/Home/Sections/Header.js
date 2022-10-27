@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FaBars, FaCross, FaUser } from 'react-icons/fa';
+import { FaAirFreshener, FaBars, FaBlog, FaCross, FaHome, FaLeanpub, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../Auth/Authcontext';
 const Header = () => {
@@ -35,8 +35,9 @@ const Header = () => {
                                 <Link to={'/home'}
                                     aria-label="Home"
                                     title="Home"
-                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex items-center"
                                 >
+                                    <FaHome className='mr-1'></FaHome>
                                     Home
                                 </Link>
                             </li>
@@ -44,8 +45,9 @@ const Header = () => {
                                 <Link to={'/courses'}
                                     aria-label="Courses"
                                     title="Courses"
-                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex items-center "
                                 >
+                                    <FaLeanpub className="mr-1"></FaLeanpub>
                                     courses
                                 </Link>
                             </li>
@@ -53,8 +55,9 @@ const Header = () => {
                                 <Link to={'/blog'}
                                     aria-label="Blog"
                                     title="Blog"
-                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex items-center"
                                 >
+                                    <FaBlog className="mr-1"></FaBlog>
                                     blog
                                 </Link>
                             </li>
@@ -62,8 +65,9 @@ const Header = () => {
                                 <Link to={'/faq'}
                                     aria-label="faq"
                                     title="faq"
-                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex items-center"
                                 >
+                                    <FaAirFreshener className="mr-1"></FaAirFreshener>
                                     faq
                                 </Link>
                             </li>
@@ -73,8 +77,9 @@ const Header = () => {
                                         <Link to={'/login'}
                                             aria-label="Login"
                                             title="Login"
-                                            className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                            className="font-medium capitalize tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex items-center"
                                         >
+                                            <FaSignInAlt className="mr-1"></FaSignInAlt>
                                             login
                                         </Link>
                                     </li>
@@ -86,6 +91,7 @@ const Header = () => {
                                             aria-label="Sign up"
                                             title="Sign up"
                                         >
+
                                             Sign up
                                         </Link>
                                     </li>
@@ -96,6 +102,7 @@ const Header = () => {
                                         <button onClick={handleLogout}
                                             className="inline-flex items-center justify-center h-12 px-6 font-medium capitalize tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                                         >
+                                            <FaSignOutAlt className="mr-1"></FaSignOutAlt>
                                             Log Out
                                         </button>
                                     </li>
@@ -112,7 +119,7 @@ const Header = () => {
                             </li>
                         </ul>
 
-                        {
+                        {/* {
                             user ?
                                 <div className='md:hidden'>
                                     {
@@ -120,6 +127,19 @@ const Header = () => {
                                             <img className='w-12 h-12 rounded-full' src={user?.photoURL} alt="" />
                                         </button> : <div className="tooltip tooltip-warning tooltip-left">
                                             <button className="btn btn-warning"><FaUser /></button>
+                                        </div>
+
+                                    }
+                                </div> : ''
+                        } */}
+                        {
+                            user ?
+                                <div className='md:hidden'>
+                                    {
+                                        user?.photoURL ? <button className="tooltip w-12 h-12 tooltip-warning tooltip-left" data-tip={user?.displayName}>
+                                            <img className='w-12 h-12 rounded-full' src={user?.photoURL} alt="" />
+                                        </button> : <div className="">
+                                            <button className="btn bg-white shadow w-12 h-12 tooltip tooltip-warning tooltip-left  rounded-full"><FaUser className='text-black' /></button>
                                         </div>
 
                                     }

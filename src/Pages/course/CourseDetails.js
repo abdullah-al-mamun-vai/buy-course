@@ -13,13 +13,15 @@ const CourseDetails = () => {
                 <div className="hero-content ">
                     <div className="w-7/12 sm:11/12" >
                         <div ref={ref}>
-                            <img className='w-full h-5/6' src={picture} alt="" />
+                            <div className='p-2 shadow-md shadow-slate-600 rounded-lg'>
+                                <img className='w-full h-5/6' src={picture} alt="" />
+                            </div>
                             <h1 className="text-5xl sm:text-3xl font-bold capitalize">{name}</h1>
-                            <p className="py-6">{about}</p>
+                            <p className="py-6 border">{about}</p>
                         </div>
                         <div className='flex justify-between items-center sm:flex-col'>
                             <div >
-                                <p>Instructor: {instructor.name}</p>
+                                <p className='font-semibold capitalize'>Instructor: {instructor.name}</p>
                                 <div>
                                     <p className='flex items-center font-semibold mr-1'>Rating : <FaStar className="mr-1 text-orange-600"></FaStar>{rating}</p>
                                     <p className='flex items-center font-semibold '>Total-Seat: <FaUser className="mr-1 text-orange-600"></FaUser>{instructor.total_seat}</p>

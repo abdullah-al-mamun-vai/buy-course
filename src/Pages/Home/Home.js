@@ -19,7 +19,7 @@ const Home = () => {
                         </p>
                         <div className="flex md:flex-col xl:flex-row mx-auto sm:items-center sm:justify-center sm:space-y-0  lg:justify-start">
                             <Link to={'/courses'} className="ring ring-blue-500 hover:bg-blue-600 hover:text-white transition ring-offset-0 2xl:mr-2 px-3 lg:mr-2 md:w-full sm:w-full mx-auto md:mb-3 py-3 text-lg font-semibold border rounded dark:bg-violet-400 dark:text-gray-900 dark:border-gray-100">Get Started</Link>
-                            <Link to={'/'} className="ring ring-blue-500 hover:bg-blue-600 hover:text-white transition px-3 py-3 md:w-full sm:w-full  mx-auto text-lg font-semibold border rounded dark:border-gray-100">Some Questions</Link>
+                            <Link to={'/faq'} className="ring ring-blue-500 hover:bg-blue-600 hover:text-white transition px-3 py-3 md:w-full sm:w-full  mx-auto text-lg font-semibold border rounded dark:border-gray-100">Some Questions</Link>
                         </div>
                     </div>
                 </div>

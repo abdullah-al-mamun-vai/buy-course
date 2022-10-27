@@ -3,15 +3,16 @@
 #Not all facilities are available everywhere, so we are the website to improve your skills online, here you can learn a lot with small details and easy guidelines, this website is easily accessible so you don't have to worry about using it.
 * i build this unique type course or training selling website ,
 # i use some package to build this website .
- 1.tailwind css
- 2.daisy ui
- 3.mamba ui
- 4.react icon
- 5.react-to-print
- 6.firebase
- 7.react-router-dom
- 8.react hot toatify
- 9.lottie react
+ 1. tailwind css
+ 2. daisy ui
+ 3. mamba ui
+ 4. react icon
+ 5. react-to-print
+ 6. firebase
+ 7. react-router-dom
+ 8. react hot toatify
+ 9. lottie react
+ 10. react loader 
  # i use three authentioncation system in this website
  * email and password
  * Google authentication
